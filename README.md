@@ -16,7 +16,7 @@ pour ne pas passer de balise a dans une balise link il faut renseigner l'attribu
 
 importer useRouter, l'instancier, la propriété pathname de useRouter nous renvoie la page sur laquelle on se trouve, on se sert de cette propriété pour conditionner le style (voir header)
 
-### routes dynamiques
+## routes dynamiques
 
 routes qui changent en fonction des paramètres d'url ou des paramètres de requêtes ! les routes dynamique doivent être entre crochets [titre].js par exemple
 
@@ -41,7 +41,7 @@ on a refactorisé le code pour créer le composant PostLink
 on lève le as de la balise Link et on remplace href par {`/blog?titre=${titre}`} on a introduit le point d'intérogation !
 on peut récuérer les paramètres de reaquête avec router.querry.titre pour les afficher directement sur la page
 
-### rendu coté serveur (SSR) avec getServerSideProps
+## rendu coté serveur (SSR) avec getServerSideProps
 
 ne s'execute que côté serveur
 est appelé à chaque requête
@@ -59,3 +59,8 @@ on va sur index.js (page home) et on implémente la fonction getServerSideProps 
 
 on crée le dossier region et le fichier dynamique [code].js
 on crée un link avec un paramètre d'url donc avec as qui va nous permettre de passer dans l'url le code du département afin que l'on puisse le récupérer dans la page dynamiquement créée pour afficher les données relative a ce département , on récupère ça vec getServerSideProps en passant dynamiquement le numéro du département dans le get axios grace au paramètre context qui contient le paramètre params duquel on va extraire le numéro du département de l'url ;)
+
+### refacto
+
+changement des functions getServerSideProps en fonctions fléchées , réecriture de l'url de axios en utilisant les `` ,
+destructuration du paramètre context pout récupérer directement params

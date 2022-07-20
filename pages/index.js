@@ -25,12 +25,12 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export const getServerSideProps = async (context) => {
   const url = "https://geo.api.gouv.fr";
-  const { data } = await axios.get(url + "/regions");
+  const { data } = await axios.get(`${url}/regions`);
   return {
     props: {
       data,
     },
   };
-}
+};
