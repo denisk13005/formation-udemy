@@ -85,10 +85,33 @@ on utilise getStaticProps de la même manière que getServerSideProps, dans le f
 
 en mode dev se comporte comme getServerSideProps (fait une requête à chaque action), en mode prod ne s'appliquera qu'à la construction de l application
 
-### route dynamique avec `getStaticProps`
+### route dynamique avec getStaticProps
 
 Si une page a des routes dynamiques elle doit définir une liste de chemin qui doivent être rendi en html au moment de la construction
 
 Si vous exportez `getStaticProps` à partur d'une oage qui utilise des routes dynamiques, Next pré-rendra statiquement tous les chemins spécifiés par `getStaticPaths` (préconstruira les pages html de ces chemins )
 
 toujours mettre `fallback` a true pour que les nouvelles routes ajoutées ultérieurement soit disponible dans la route dynamique !
+
+## Création de la route dynamique pour chaque post
+
+on renomme le fichier /blog/[titre] en [id]
+On met l'image dans une balise Link qui nous ménera au post souhaitez grâce à son id passer en paramètre
+
+on renseigne le getStaticPaths dans /blog/[id] , on récupère les id de chaque post pour générer les routes de chaque correspondant grace au .map qu'on retoure en params
+
+veillez a bien respecter la syntaxe params id ...
+
+une fois qu'on a extrait l'id du post on fait la requête axios dans getStaticProps pour récupérer les données relatives a ce post
+
+du coup l'url a changé et est maintenant sur post et non plus sur posts !!!
+
+on récupère les données du post sélectionné pour construire la page avec
+
+Toutes les pages qui ne contiennent pas getServerSideProps seront servies comme statiques
+
+# getInitialProps SSR
+
+Une page qui contient la fonction getInitialProps est rendu coté serveur, il est l'équivalent de getServerSideProps et était utilisé par défaut dans les versions antérieures de Next.js pour récupérer les données. Elle s'execute coté serveur et coté client.
+
+Depuis la version 9.3, Next a introduit getServerSideProps et GetStaticProps (getStaticPaths) qui ne s'éxecute que coté serveur

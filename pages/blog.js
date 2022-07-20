@@ -32,9 +32,11 @@ const Blog = ({ posts }) => {
       {posts.map((post) => (
         <div key={post._id} style={styles.main}>
           <h1>{post.title}</h1>
-          <div>
-            <img src={post.pictures[0]} style={styles.img} />
-          </div>
+          <Link href={`/blog/[id]`} as={`/blog/${post._id}`} passHref>
+            <div>
+              <img src={post.pictures[0]} style={styles.img} />
+            </div>
+          </Link>
           <div>{post.body}</div>
         </div>
       ))}
