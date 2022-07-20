@@ -192,19 +192,6 @@ Toujours mettre une condition dans les routes dynamique
 
 relier vercel au projet git hub dans la console admin vercel et deploy
 
-# Authentification avec Next
-
-Authentifier coté client sinon on est obligé d'utiliser getServerSideProps dans toutes les pages et ça sera moins rapide du coup
-Utilisation des cookies pour le stockage du token car disponible coté serveur contrairement à localStorage
-
-## Mise en oeuvre
-
-Utilisation de l'API context pour avoir un state partagé dans tous nos composants et pages
-Création d'un composant d'un composant d'ordre supérieur (HOC) qui utilise ce contexte et protège les routes en conséquence
-Définition d'un header global dans Axios pour inclure le token d'auth dans toutes les requêtes
-Besoin d'un back pour renvoyer un jeton d'auth lorsque la connexion est correcte
-Besoin de la librairie `js-cookie`
-
 Nous créons un nouveau projet pour l'authentification avec `npx create-next-app with-auth`
 
 Suite du Readme sur ce projet <a href="https://github.com/denisk13005/formation-udemy-with-auth">https://github.com/denisk13005/formation-udemy-with-auth</a>
