@@ -181,3 +181,9 @@ pour résoudre ce problème on utilise un useEffect qui se déclenche lorasque l
 voir index.js avec le localStorage
 
 voir exemple.js
+
+# Refacto de blog/[id]
+
+On a rajouté une condition data && pour le déploiement ! sinon ça ne fonctionne pas
+
+Toujours mettre une condition dans les routes dynamique

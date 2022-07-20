@@ -5,12 +5,16 @@ import Head from "next/head";
 const CodeRegion = ({ code }) => {
   return (
     <>
-      <Head>
-        <title>{code.nom}</title>
-      </Head>
-      <div>
-        <h1>{code.nom}</h1> <p>{code.code}</p>
-      </div>
+      {code && (
+        <>
+          <Head>
+            <title>{code.nom}</title>
+          </Head>
+          <div>
+            <h1>{code.nom}</h1> <p>{code.code}</p>
+          </div>
+        </>
+      )}
     </>
   );
 };

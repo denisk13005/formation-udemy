@@ -14,14 +14,18 @@ const Titre = ({ data }) => {
     //EX SSR
     // <h1>{router.query.titre}</h1>;
     <>
-      <Head>
-        <title>{data.title}</title>
-      </Head>
-      <h1>{data.title}</h1>
-      <div>
-        <img src={data.pictures[0]} alt="" />
-      </div>
-      <p>{data.description}</p>
+      {data && (
+        <>
+          <Head>
+            <title>{data.title}</title>
+          </Head>
+          <h1>{data.title}</h1>
+          <div>
+            <img src={data.pictures[0]} alt="" />
+          </div>
+          <p>{data.description}</p>
+        </>
+      )}
     </>
   );
 };
