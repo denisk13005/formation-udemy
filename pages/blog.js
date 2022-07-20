@@ -5,6 +5,7 @@ import React from "react";
 // import { useRouter } from "next/router";
 // EX SSG
 import axios from "axios";
+import Head from "next/head";
 
 const Blog = ({ posts }) => {
   const styles = {
@@ -29,6 +30,10 @@ const Blog = ({ posts }) => {
         <PostLink titre="svelte" />
         <h1>{router.query.titre}</h1> */}
       {/* </ul> */}
+      <Head>
+        <title>liste des blogs</title>
+      </Head>
+      <h1>cette page utilise getStaticProps</h1>
       {posts.map((post) => (
         <div key={post._id} style={styles.main}>
           <h1>{post.title}</h1>

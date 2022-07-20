@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 // EX SSR
 // import { useRouter } from "next/router";
 
@@ -13,6 +14,9 @@ const Titre = ({ data }) => {
     //EX SSR
     // <h1>{router.query.titre}</h1>;
     <>
+      <Head>
+        <title>{data.title}</title>
+      </Head>
       <h1>{data.title}</h1>
       <div>
         <img src={data.pictures[0]} alt="" />

@@ -1,11 +1,17 @@
 import React from "react";
 import axios from "axios";
+import Head from "next/head";
 
 const CodeRegion = ({ code }) => {
   return (
-    <div>
-      <h1>{code.nom}</h1> <p>{code.code}</p>
-    </div>
+    <>
+      <Head>
+        <title>{code.nom}</title>
+      </Head>
+      <div>
+        <h1>{code.nom}</h1> <p>{code.code}</p>
+      </div>
+    </>
   );
 };
 export const getServerSideProps = async ({ params }) => {

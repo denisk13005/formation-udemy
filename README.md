@@ -4,6 +4,8 @@
 
 création des différentes pages dans le répertoire page, chaque fichier dans ce répertoire sera une route
 
+Les images devront être placées dans le répertoire public/images
+
 ### création du composant layout
 
 on crée le composant Layout.jsx dans lequel on place le header pour qu'il soit présent dans toutes les pages, puis on englobe notre appli avec ce composant layout dans index.js
@@ -115,3 +117,67 @@ Toutes les pages qui ne contiennent pas getServerSideProps seront servies comme 
 Une page qui contient la fonction getInitialProps est rendu coté serveur, il est l'équivalent de getServerSideProps et était utilisé par défaut dans les versions antérieures de Next.js pour récupérer les données. Elle s'execute coté serveur et coté client.
 
 Depuis la version 9.3, Next a introduit getServerSideProps et GetStaticProps (getStaticPaths) qui ne s'éxecute que coté serveur
+
+C'est la seule fontion que l'on peut utiliser dans le fichier \_app.js
+
+# hook personnalisé SWR de next rendu coté client CSR
+
+permet la mise en cache et la revalidation des données
+
+il faut l'installer avec `npm install swr`
+
+permet la récupération des données coté client
+
+on l'implémente dans le fichier profile.jsx en déclaratn une fonction fetcher qui dépendra de l'url rentrée en premier paramètre de useSWR
+
+# Comment choisir un rendu
+
+## SSR
+
+Vous ne devez utiliser getServerSideProps que si vous avez besoin de pré-rendre une page dont les données doivent être récupérées au moment de la demande. Le temps jusqu'au premier octet (TTFB) sera plus lent que getStaticProps car le serveur doit caluculer le résultat à chaque demande et le résultat ne peut pa être mis en cache par un CDN sans config supplémentaire
+
+## SSG
+
+Les données requises pour afficher la page sont disponible au moment de la création avant la demande d'un utilisateur.
+
+Si les données proviennent de Headless CMS (strappi) ou d'autres CMS (wordpress)
+
+Si les données peuvent être mises en cache publiquement
+
+## SSR avec getInitialProps
+
+On ne l'utilisera très rarement
+Utile pour utiliser Redux coté serveur et coté client
+Si vous utiliser l'internationalisation du site avec i18n (librairie )
+Si vous utilisz d'autres librairies tiers qui requièrent getInitialProps
+
+## CSR
+
+Si votre page contient des données fréquemment mise à jour et que vous n'avez pas besoin de pré-afficher les données, vous pouvez récupérer les données coté client. Cette approche fonctionne bien pour les pages de tableau de bord utilisateur, par exemple.
+Étant donné qu'un tableau de bord est une page privée et spécifique à l'utilisateur, le référencement n'est pas pertinent et la page n'a pas besoin d'être pré-rendue. LEs données sont fréquemment mises à jour, ce qui nécessite une récupération des données au moment de la demande
+
+# Création sur fichier \_document.js qui nous aidera pour le référencement
+
+on crée ce fichier qui va nous permettre d'avoir un head ... cela nous aidera pour le référencement
+
+## on a installé bootstarp avec le link dans la balise Head de \_document.js
+
+### on peut ajouter un titre à chaque page (dans l'onglet du navigateur) grace à la balise Head et title
+
+# Variables d'environnement
+
+Si elles doivent être disponible coté client précéder le nom de la variable par : NEXT_PUBLIC
+
+# Utilisation de styled jsx et module css
+
+mise en place de styled jsx dans le composant Header et ensuite import du module.css pour styliser le header
+
+# Gestion de l'erreur window is not defined
+
+Est dûe au fait que window n'est pas disponible coté serveur lorsqu'on utilise du SSR
+
+pour résoudre ce problème on utilise un useEffect qui se déclenche lorasque la page est montée ou un import dynamique
+
+voir index.js avec le localStorage
+
+voir exemple.js
