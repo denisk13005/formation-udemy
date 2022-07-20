@@ -78,3 +78,17 @@ Le paramètre context de getStaticProps contient 3 paramètres :
 -preview
 
 on peut utiliser `revalidate` pour rafraichier la page toutes les x secondes (défini par la valeur donnée à revalidate)
+
+### utilisation de getStaticProps
+
+on utilise getStaticProps de la même manière que getServerSideProps, dans le fichier blog.js on fait appel à une api pour récupérer des posts avec axios
+
+en mode dev se comporte comme getServerSideProps (fait une requête à chaque action), en mode prod ne s'appliquera qu'à la construction de l application
+
+### route dynamique avec `getStaticProps`
+
+Si une page a des routes dynamiques elle doit définir une liste de chemin qui doivent être rendi en html au moment de la construction
+
+Si vous exportez `getStaticProps` à partur d'une oage qui utilise des routes dynamiques, Next pré-rendra statiquement tous les chemins spécifiés par `getStaticPaths` (préconstruira les pages html de ces chemins )
+
+toujours mettre `fallback` a true pour que les nouvelles routes ajoutées ultérieurement soit disponible dans la route dynamique !
