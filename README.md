@@ -16,7 +16,7 @@ pour ne pas passer de balise a dans une balise link il faut renseigner l'attribu
 
 importer useRouter, l'instancier, la propriété pathname de useRouter nous renvoie la page sur laquelle on se trouve, on se sert de cette propriété pour conditionner le style (voir header)
 
-## routes dynamiques
+# routes dynamiques
 
 routes qui changent en fonction des paramètres d'url ou des paramètres de requêtes ! les routes dynamique doivent être entre crochets [titre].js par exemple
 
@@ -41,7 +41,7 @@ on a refactorisé le code pour créer le composant PostLink
 on lève le as de la balise Link et on remplace href par {`/blog?titre=${titre}`} on a introduit le point d'intérogation !
 on peut récuérer les paramètres de reaquête avec router.querry.titre pour les afficher directement sur la page
 
-## rendu coté serveur (SSR) avec getServerSideProps
+# rendu coté serveur (SSR) avec getServerSideProps
 
 ne s'execute que côté serveur
 est appelé à chaque requête
@@ -64,3 +64,17 @@ on crée un link avec un paramètre d'url donc avec as qui va nous permettre de 
 
 changement des functions getServerSideProps en fonctions fléchées , réecriture de l'url de axios en utilisant les `` ,
 destructuration du paramètre context pout récupérer directement params
+
+# Génération statique SSG
+
+utilise getStaticProps
+s'execute côté server , n'est pas inclus dans le bundle js
+est appelé à la construction
+html rendu à la construction
+
+Le paramètre context de getStaticProps contient 3 paramètres :
+-params
+-query
+-preview
+
+on peut utiliser `revalidate` pour rafraichier la page toutes les x secondes (défini par la valeur donnée à revalidate)
